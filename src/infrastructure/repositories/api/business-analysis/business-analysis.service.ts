@@ -40,30 +40,65 @@ export class BusinessAnalysisService implements IBusinessAnalysisServiceApi {
 
   async gemini_analysis(data: BusinessIdeaDto): Promise<ApiResponse> {
     try {
+      const ai_model = [
+        'gemini-3.1-flash-lite-preview',
+        'gemini-2.5-flash-lite',
+      ];
       const prompt = `
-สร้าง Business Model Canvas สำหรับไอเดีย: ${data.idea}
+คุณคือผู้เชี่ยวชาญด้าน Business Strategy, Food Industry Consultant และ Startup Advisor ที่มีประสบการณ์ในตลาดประเทศไทย
 
-ตอบเป็น JSON เท่านั้น
-ห้ามใส่ markdown
-ห้ามใส่ \`\`\`
-ต้องเป็น JSON object ล้วน:
+วิเคราะห์ไอเดียธุรกิจอาหารต่อไปนี้อย่างลึกซึ้ง รอบด้าน และสมจริง:
+"${data.idea}"
+
+ให้ความสำคัญกับปัจจัยต่อไปนี้ในการวิเคราะห์:
+- พฤติกรรมผู้บริโภคไทย (Consumer Behavior)
+- Gold Standard Mental ของผู้บริโภคด้านอาหาร เช่น ความสะอาด ความปลอดภัย ความคุ้มค่า รสชาติ ความน่าเชื่อถือของแบรนด์
+- บริบททางสังคม (Social Trends) เช่น สังคมเมือง ผู้สูงอายุ เด็ก วัยทำงาน
+- บริบททางวัฒนธรรมไทย เช่น รสนิยมอาหาร การกินเป็นครอบครัว เทศกาล ความเชื่อ
+- การแข่งขันในตลาดอาหารไทย
+- ความเป็นไปได้ด้านต้นทุนและกำไรจริง
+- กฎหมายที่เกี่ยวข้อง เช่น อย., มาตรฐานอาหาร, ภาษี, ใบอนุญาตร้านอาหาร
+- Supply Chain และแหล่งวัตถุดิบในประเทศไทย
+- ความเสี่ยงด้านภาพลักษณ์และความปลอดภัยอาหาร
+
+คุณต้องสร้างผลลัพธ์ตามโครงสร้าง JSON ด้านล่างนี้เท่านั้น
+
+เงื่อนไขสำคัญ:
+- ตอบเป็น JSON object เท่านั้น
+- ห้ามใส่ markdown
+- ห้ามใส่ ห้ามใส่ \`\`\`
+- ห้ามอธิบาย
+- ห้ามมีข้อความก่อนหรือหลัง JSON
+- ต้องเป็น JSON ที่สามารถใช้ JSON.parse() ได้ทันที
+- score ต้องเป็นตัวเลข 0-100 (ห้ามเป็น string และห้ามสุ่ม)
+- score ต้องประเมินจากความเป็นไปได้จริงของโมเดลธุรกิจอาหารในประเทศไทย
+- ทุก field ต้องมีข้อมูลอย่างน้อย 2 รายการ
+- ต้องวิเคราะห์ตามบริบทตลาดประเทศไทยเท่านั้น
+
+รูปแบบ JSON ที่ต้องตอบ:
 
 {
-  "customer_segments": [],
-  "value_propositions": [],
-  "channels": [],
-  "customer_relationships": [],
-  "revenue_streams": [],
-  "key_resources": [],
-  "key_activities": [],
-  "key_partners": [],
-  "cost_structure": [],
-  "feasibility_score": 0
+  "score": number,
+  "canvas": {
+    "keyPartners": string[],
+    "keyActivities": string[],
+    "keyResources": string[],
+    "valuePropositions": string[],
+    "customerRelationships": string[],
+    "channels": string[],
+    "customerSegments": string[],
+    "costStructure": string[],
+    "revenueStreams": string[]
+  },
+  "strategies": string[]
 }
+
+Business Model Canvas ต้องมีเหตุผล สมจริง สอดคล้องกันทุกส่วน และสะท้อนความเป็นธุรกิจอาหารในบริบทประเทศไทยอย่างแท้จริง
+strategies ต้องเป็นกลยุทธ์เชิงปฏิบัติที่ทำได้จริง 3 ข้อ โดยคำนึงถึงกฎหมาย มาตรฐานอาหาร และพฤติกรรมผู้บริโภคไทย
 `;
 
       const response = await this.ai.models.generateContent({
-        model: 'gemini-2.5-flash-lite',
+        model: 'gemini-3.1-flash-lite-preview',
         contents: [
           {
             role: 'user',

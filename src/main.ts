@@ -5,6 +5,10 @@ import { EnvironmentConfigService } from '@infrastructure/config/environment-con
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // enable CORS for all origins, methods, and headers
+  app.enableCors();
+
    const config = new DocumentBuilder()
     .setTitle('CPE465')
     .setDescription('The CPE465 API description')
