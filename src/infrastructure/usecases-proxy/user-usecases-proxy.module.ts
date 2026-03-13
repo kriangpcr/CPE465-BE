@@ -4,6 +4,7 @@ import { DatabaseModule } from '@infrastructure/repositories/database/database.m
 import { EnvironmentConfigModule } from '@infrastructure/config/environment-config.module';
 import { CreateUserUseCase } from '@usecases/index';
 import { UserRepository } from '@domain/repositories/database';
+import { PrismaUserRepository } from '@infrastructure/repositories/database/prisma/repositories';
 
 @Module({
   imports: [DatabaseModule, EnvironmentConfigModule],
@@ -16,9 +17,9 @@ export class UserUsecasesProxyModule {
       module: UserUsecasesProxyModule,
       providers: [
         {
-          inject: [UserRepository],
+          inject: [PrismaUserRepository],
           provide: UserUsecasesProxyModule.CREATE_USER_USECASE,
-          useFactory: (userRepository: UserRepository) =>
+          useFactory: (userRepository: PrismaUserRepository) =>
             new UseCaseProxy(new CreateUserUseCase(userRepository)),
         },
       ],

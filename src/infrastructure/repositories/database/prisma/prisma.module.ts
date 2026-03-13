@@ -4,12 +4,7 @@ import { PrismaUserRepository } from './repositories';
 import { UserRepository } from '@domain/repositories/database';
 import { EnvironmentConfigModule } from '@infrastructure/config/environment-config.module';
 
-const primsaRepositories = [
-  {
-    provide: UserRepository,
-    useClass: PrismaUserRepository,
-  },
-];
+const primsaRepositories = [PrismaUserRepository];
 @Module({
   imports: [EnvironmentConfigModule],
   providers: [PrismaService, ...primsaRepositories, EnvironmentConfigModule],
