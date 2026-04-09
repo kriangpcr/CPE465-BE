@@ -5,9 +5,11 @@ import { EnvironmentConfigService } from './environment-config.service';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `${process.cwd()}/env/${process.env.NODE_ENV}.env`,
       isGlobal: true,
-      // validate: validateEnvironmentVariables,
+      envFilePath:
+        process.env.NODE_ENV === 'production'
+          ? undefined
+          : `${process.cwd()}/env/${process.env.NODE_ENV || 'development'}.env`,
     }),
   ],
   providers: [EnvironmentConfigService],
