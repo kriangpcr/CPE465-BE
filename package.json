@@ -20,7 +20,9 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prisma:generate": "prisma generate --schema ./prisma/schema.prisma",
     "prisma:push": "dotenv -e ./env/development.env -- npx prisma db push --schema ./prisma/schema.prisma",
-    "prisma:pull": "dotenv -e ./env/development.env -- npx prisma db pull --schema ./prisma/schema.prisma"
+    "prisma:pull": "dotenv -e ./env/development.env -- npx prisma db pull --schema ./prisma/schema.prisma",
+    "prisma:migrate:reset": "dotenv -e ./env/development.env -- npx prisma migrate reset",
+    "prisma:migrate:deploy": "dotenv -e ./env/development.env -- npx prisma migrate deploy"
   },
   "dependencies": {
     "@google/genai": "^1.43.0",
