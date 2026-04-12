@@ -1,5 +1,10 @@
 export interface BusinessIdeaDto {
-  idea: string;
+  businessName: string;
+  IdeaDetail: string;
+  budget: number;
+  location: string;
+  targetAudience: string;
+  salesChannel: string;
 }
 
 export interface ApiResponse<T = any> {

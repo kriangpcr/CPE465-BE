@@ -9,5 +9,44 @@ export class BusinessIdeaDto {
   })
   @IsString()
   @IsNotEmpty()
-  idea: string;
+  IdeaDetail: string;
+
+  @ApiProperty({
+    description: 'The name of the business',
+    type: String,
+    required: true,
+  })
+  @IsString()
+  businessName: string;
+
+  @ApiProperty({
+    description: 'The budget allocated for the business idea',
+    type: Number,
+    required: true,
+  })
+  @IsNotEmpty()
+  budget: number;
+
+  @ApiProperty({
+    description: 'The location where the business will operate',
+    type: String,
+    required: true,
+  })
+  @IsString()
+  location: string;
+
+  @ApiProperty({
+    description: 'The target audience for the business idea',
+    type: String,
+    required: true,
+  })
+  @IsString()
+  targetAudience: string;
+
+  @ApiProperty({
+    description: 'The sales channel for the business idea (online, onsite, both)',
+    type: String,
+    required: true,  })
+  @IsString()
+  salesChannel: string;
 }
