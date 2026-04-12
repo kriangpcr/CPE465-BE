@@ -6,12 +6,19 @@ import { BusinessAnalysisUsecasesProxyModule } from '@infrastructure/usecases-pr
 import { BusinessAnalysisController } from './business-analysis.controller.module';
 import { AuthUsecasesProxyModule } from '@infrastructure/usecases-proxy/auth-usecases-proxy.module';
 import { AuthController } from './auth.controller.module';
+import { HealthController } from './health.module';
+
 @Module({
   imports: [
     UserUsecasesProxyModule.register(),
     BusinessAnalysisUsecasesProxyModule.register(),
     AuthUsecasesProxyModule.register(),
   ],
-  controllers: [UserController, BusinessAnalysisController, AuthController],
+  controllers: [
+    UserController,
+    BusinessAnalysisController,
+    AuthController,
+    HealthController,
+  ],
 })
 export class ControllersModule {}
