@@ -102,9 +102,15 @@ export const GEMINI_PROMPT = (data: BusinessIdeaDto) => {
 - ต้องมีเหตุผลเชิงระบบ (ไม่ใช่ความรู้สึก)
 
 การคำนวณ channels (สำคัญ):
-- ถ้า salesChannel = "online"  → channels.online = 100, channels.onsite = 0
-- ถ้า salesChannel = "onsite"  → channels.online = 0,   channels.onsite = 100
-- ถ้า salesChannel = "both"    → ประเมินสัดส่วนตามความเหมาะสมของทำเล location และกลุ่มเป้าหมาย
+- ให้ AI "แนะนำสัดส่วนที่เหมาะสมที่สุด" ระหว่าง online และ onsite (%)
+- ต้องรวมกันได้ 100 เสมอ
+- พิจารณาจาก:
+  - ประเภทธุรกิจอาหาร (เช่น street food, premium, niche)
+  - พฤติกรรมผู้บริโภคไทย (delivery vs dine-in)
+  - ทำเล location (เมือง / ชานเมือง / tourist / community)
+  - กลุ่มเป้าหมาย (วัยทำงาน / นักเรียน / ครอบครัว)
+- ห้าม default 50/50 ถ้าไม่มีเหตุผลรองรับ
+- ต้องมีเหตุผลรองรับใน reasonForScore
 
 การคำนวณ gdpMetrics:
 - gpAfterCommission: กำไรสุทธิโดยประมาณต่อเดือน (บาท) หลังหักค่า GP/commission แพลตฟอร์ม — อิงจากงบประมาณ ${data.budget} บาท
