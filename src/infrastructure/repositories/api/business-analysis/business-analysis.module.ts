@@ -8,4 +8,4 @@ import { EnvironmentConfigModule } from '@infrastructure/config/environment-conf
   providers: [BusinessAnalysisService],
   exports: [BusinessAnalysisService],
 })
-export class BusinessAnalysisModule {}
+export class BusinessAnalysisModule { }

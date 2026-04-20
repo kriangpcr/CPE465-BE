@@ -5,7 +5,7 @@ export const GEMINI_PROMPT = (data: BusinessIdeaDto) => {
   const normalized = {
     businessName: data.businessName || "ไม่ระบุชื่อธุรกิจ",
     IdeaDetail: data.IdeaDetail || "ไม่ระบุรายละเอียดไอเดีย",
-    budget: data.budget ?? 50000, 
+    budget: data.budget ?? 50000,
     location: data.location || "ไม่ระบุ (สมมติเป็นเขตเมืองทั่วไปในประเทศไทย)",
     targetAudience:
       data.targetAudience ||

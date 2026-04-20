@@ -40,47 +40,59 @@ export class BusinessAnalysisService implements IBusinessAnalysisServiceApi {
   }
 
   async gemini_analysis(data: BusinessIdeaDto): Promise<ApiResponse> {
-    try {
-      const ai_model = [
-        'gemini-3.1-flash-lite-preview',
-        'gemini-2.5-flash-lite',
-      ];
-      const prompt = GEMINI_PROMPT(data);
+    const ai_model = [
+      'gemini-2.5-flash',
+      'gemini-2.5-flash-lite',
+      'gemini-1.5-flash',
+    ];
+    const prompt = GEMINI_PROMPT(data);
 
-      const response = await this.ai.models.generateContent({
-        model: 'gemini-3.1-flash-lite-preview',
-        contents: [
-          {
-            role: 'user',
-            parts: [{ text: prompt }],
-          },
-        ],
-      });
+    let lastError: any;
 
-      const rawText = response.text;
+    for (const model of ai_model) {
+      try {
+        const response = await this.ai.models.generateContent({
+          model,
+          contents: [
+            {
+              role: 'user',
+              parts: [{ text: prompt }],
+            },
+          ],
+        });
 
-      const cleaned = rawText
-        .replace(/```json/g, '')
-        .replace(/```/g, '')
-        .trim();
+        const rawText = response.text;
 
-      const parsedData = JSON.parse(cleaned);
+        const cleaned = rawText
+          .replace(/```json/g, '')
+          .replace(/```/g, '')
+          .trim();
 
-      return {
-        statusCode: 200,
-        data: parsedData,
-        message: 'Business analysis generated successfully',
-        error: null,
-        timestamp: new Date().toISOString(),
-      };
-    } catch (error: any) {
-      return {
-        statusCode: 500,
-        data: null,
-        message: 'Failed to generate business analysis',
-        error: error?.message || error,
-        timestamp: new Date().toISOString(),
-      };
+        const parsedData = JSON.parse(cleaned);
+
+
+        return {
+          statusCode: 200,
+          data: parsedData,
+          message: 'Business analysis generated successfully',
+          error: null,
+          timestamp: new Date().toISOString(),
+        };
+      } catch (error: any) {
+        console.error(
+          `[Gemini Error] model=${model} `,
+          error?.message
+        );
+        lastError = error;
+      }
     }
+
+    return {
+      statusCode: 500,
+      data: null,
+      message: 'Failed to generate business analysis (all models exhausted)',
+      error: lastError?.message || lastError,
+      timestamp: new Date().toISOString(),
+    };
   }
 }
