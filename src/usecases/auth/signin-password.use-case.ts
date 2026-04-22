@@ -50,7 +50,7 @@ export class SignInPasswordUseCase implements UseCase<
       },
     };
   }
-  
+
   private async signInUser(email: string, password: string) {
     const { data, error } = await this.supabaseClient.auth.signInWithPassword({
       email,

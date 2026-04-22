@@ -24,5 +24,4 @@ export class User implements UserProps {
       created_at: now,
     });
   }
-
 }

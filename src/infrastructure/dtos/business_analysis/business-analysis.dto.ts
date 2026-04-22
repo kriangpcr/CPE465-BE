@@ -44,9 +44,11 @@ export class BusinessIdeaDto {
   targetAudience: string;
 
   @ApiProperty({
-    description: 'The sales channel for the business idea (online, onsite, both)',
+    description:
+      'The sales channel for the business idea (online, onsite, both)',
     type: String,
-    required: true,  })
+    required: true,
+  })
   @IsString()
   salesChannel: string;
 }

@@ -7,8 +7,8 @@ export class PrismaUserMapper {
       id: user.id,
       created_at: user.created_at,
       email: user.email,
-      role:user.role,
-      password: user.password
+      role: user.role,
+      password: user.password,
     };
   }
 

@@ -1,16 +1,19 @@
-import { RefreshTokenRequestDto, SignInPasswordRequestDto, SignUpPasswordRequestDto } from '@infrastructure/dtos/auth/auth.dto';
+import {
+  RefreshTokenRequestDto,
+  SignInPasswordRequestDto,
+  SignUpPasswordRequestDto,
+} from '@infrastructure/dtos/auth/auth.dto';
 import { CreateUserDto } from '@infrastructure/dtos/user/create-user.dto';
 import { AuthUsecasesProxyModule } from '@infrastructure/usecases-proxy/auth-usecases-proxy.module';
 import { UseCaseProxy } from '@infrastructure/usecases-proxy/usecases-proxy';
 import { UserUsecasesProxyModule } from '@infrastructure/usecases-proxy/user-usecases-proxy.module';
-import {
-  Body,
-  Controller,
-  Inject,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Inject, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { RefreshTokenUseCase, SignInPasswordUseCase, SignUpPasswordUseCase } from '@usecases/index';
+import {
+  RefreshTokenUseCase,
+  SignInPasswordUseCase,
+  SignUpPasswordUseCase,
+} from '@usecases/index';
 
 @Controller({ path: 'auth' })
 @ApiTags('Auths')
@@ -26,13 +29,17 @@ export class AuthController {
 
   @Post('/signin')
   async signIn(@Body() body: SignInPasswordRequestDto) {
-    const user = await this.signInPasswordUseCase.getUseCase().execute({ body });
+    const user = await this.signInPasswordUseCase
+      .getUseCase()
+      .execute({ body });
     return user;
   }
 
   @Post('/signup')
   async signUp(@Body() body: SignUpPasswordRequestDto) {
-    const user = await this.signUpPasswordUseCase.getUseCase().execute({ body });
+    const user = await this.signUpPasswordUseCase
+      .getUseCase()
+      .execute({ body });
     return user;
   }
 

@@ -29,7 +29,6 @@ class EnvironmentVariables {
 
   @IsString()
   GOOGLE_GEMINI_KEY: string;
-
 }
 
 export function validateEnvironmentVariables(

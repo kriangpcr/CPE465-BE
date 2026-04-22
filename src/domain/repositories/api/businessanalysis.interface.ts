@@ -19,4 +19,3 @@ export abstract class IBusinessAnalysisServiceApi {
   abstract business_analysis(data: BusinessIdeaDto): Promise<ApiResponse>;
   abstract gemini_analysis(data: BusinessIdeaDto): Promise<ApiResponse>;
 }
-  

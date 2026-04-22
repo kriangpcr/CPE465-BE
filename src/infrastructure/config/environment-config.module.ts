@@ -11,7 +11,7 @@ import { validateEnvironmentVariables } from './environment-config.validation';
         process.env.NODE_ENV === 'production'
           ? undefined
           : `${process.cwd()}/env/${process.env.NODE_ENV || 'development'}.env`,
-          
+
       validate: validateEnvironmentVariables,
     }),
   ],

@@ -4,6 +4,6 @@ import { ControllersModule } from './presentation/controllers/controllers.module
 import { DatabaseModule } from '@infrastructure/repositories/database/database.module';
 
 @Module({
-  imports: [EnvironmentConfigModule, ControllersModule , DatabaseModule],
+  imports: [EnvironmentConfigModule, ControllersModule, DatabaseModule],
 })
 export class AppModule {}

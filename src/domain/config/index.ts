@@ -4,4 +4,5 @@ import { SupabaseConfig } from './supabase.interface';
 
 export * from './server.interface';
 
-export interface EnvironmentConfig extends ServerConfig, GoogleConfig, SupabaseConfig {}
+export interface EnvironmentConfig
+  extends ServerConfig, GoogleConfig, SupabaseConfig {}

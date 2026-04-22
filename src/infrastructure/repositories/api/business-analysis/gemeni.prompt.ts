@@ -1,18 +1,16 @@
 import { BusinessIdeaDto } from '@domain/repositories/api/businessanalysis.interface';
 
 export const GEMINI_PROMPT = (data: BusinessIdeaDto) => {
-
   const normalized = {
-    businessName: data.businessName || "ไม่ระบุชื่อธุรกิจ",
-    IdeaDetail: data.IdeaDetail || "ไม่ระบุรายละเอียดไอเดีย",
+    businessName: data.businessName || 'ไม่ระบุชื่อธุรกิจ',
+    IdeaDetail: data.IdeaDetail || 'ไม่ระบุรายละเอียดไอเดีย',
     budget: data.budget ?? 50000,
-    location: data.location || "ไม่ระบุ (สมมติเป็นเขตเมืองทั่วไปในประเทศไทย)",
+    location: data.location || 'ไม่ระบุ (สมมติเป็นเขตเมืองทั่วไปในประเทศไทย)',
     targetAudience:
       data.targetAudience ||
-      "ไม่ระบุกลุ่มเป้าหมาย (ให้วิเคราะห์จากพฤติกรรมผู้บริโภคไทยทั่วไป)",
-    salesChannel: data.salesChannel || "both", // default = hybrid (realistic สุด)
+      'ไม่ระบุกลุ่มเป้าหมาย (ให้วิเคราะห์จากพฤติกรรมผู้บริโภคไทยทั่วไป)',
+    salesChannel: data.salesChannel || 'both', // default = hybrid (realistic สุด)
   };
-
 
   return `คุณคือผู้เชี่ยวชาญด้าน Business Strategy, Food Industry Consultant และ Startup Advisor ที่มีประสบการณ์ในตลาดประเทศไทย
 

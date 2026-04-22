@@ -1,12 +1,7 @@
 import { CreateUserDto } from '@infrastructure/dtos/user/create-user.dto';
 import { UseCaseProxy } from '@infrastructure/usecases-proxy/usecases-proxy';
 import { UserUsecasesProxyModule } from '@infrastructure/usecases-proxy/user-usecases-proxy.module';
-import {
-  Body,
-  Controller,
-  Inject,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Inject, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateUserUseCase } from '@usecases/index';
 

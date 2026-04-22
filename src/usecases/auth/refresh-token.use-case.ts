@@ -18,9 +18,7 @@ export class RefreshTokenUseCase implements UseCase<
 > {
   private supabaseClient: SupabaseClient = null;
 
-  constructor(
-    private readonly configService: EnvironmentConfigService,
-  ) {
+  constructor(private readonly configService: EnvironmentConfigService) {
     this.supabaseClient = createClient(
       this.configService.getSupabaseUrl(),
       this.configService.getSupabaseKey(),

@@ -70,7 +70,6 @@ export class BusinessAnalysisService implements IBusinessAnalysisServiceApi {
 
         const parsedData = JSON.parse(cleaned);
 
-
         return {
           statusCode: 200,
           data: parsedData,
@@ -79,10 +78,7 @@ export class BusinessAnalysisService implements IBusinessAnalysisServiceApi {
           timestamp: new Date().toISOString(),
         };
       } catch (error: any) {
-        console.error(
-          `[Gemini Error] model=${model} `,
-          error?.message
-        );
+        console.error(`[Gemini Error] model=${model} `, error?.message);
         lastError = error;
       }
     }

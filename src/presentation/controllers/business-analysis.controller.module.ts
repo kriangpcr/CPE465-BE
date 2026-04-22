@@ -3,12 +3,7 @@ import { CreateUserDto } from '@infrastructure/dtos/user/create-user.dto';
 import { BusinessAnalysisUsecasesProxyModule } from '@infrastructure/usecases-proxy/business-analysis-usecases-proxy.module';
 import { UseCaseProxy } from '@infrastructure/usecases-proxy/usecases-proxy';
 import { UserUsecasesProxyModule } from '@infrastructure/usecases-proxy/user-usecases-proxy.module';
-import {
-  Body,
-  Controller,
-  Inject,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Inject, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { AnalysisIdeaUseCase } from '@usecases/index';
 
