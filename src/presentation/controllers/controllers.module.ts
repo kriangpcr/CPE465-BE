@@ -7,18 +7,22 @@ import { BusinessAnalysisController } from './business-analysis.controller.modul
 import { AuthUsecasesProxyModule } from '@infrastructure/usecases-proxy/auth-usecases-proxy.module';
 import { AuthController } from './auth.controller.module';
 import { HealthController } from './health.module';
+import { UploadDriveUsecasesProxyModule } from '@infrastructure/usecases-proxy/upload-drive-usecases-proxy.module';
+import { UploadDriveController } from './upload-drive.controller.module';
 
 @Module({
   imports: [
     UserUsecasesProxyModule.register(),
     BusinessAnalysisUsecasesProxyModule.register(),
     AuthUsecasesProxyModule.register(),
+    UploadDriveUsecasesProxyModule.register()
   ],
   controllers: [
     UserController,
     BusinessAnalysisController,
     AuthController,
     HealthController,
+    UploadDriveController
   ],
 })
-export class ControllersModule {}
+export class ControllersModule { }

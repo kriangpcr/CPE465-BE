@@ -18,4 +18,4 @@ import { validateEnvironmentVariables } from './environment-config.validation';
   providers: [EnvironmentConfigService],
   exports: [EnvironmentConfigService],
 })
-export class EnvironmentConfigModule {}
+export class EnvironmentConfigModule { }

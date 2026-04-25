@@ -29,6 +29,18 @@ class EnvironmentVariables {
 
   @IsString()
   GOOGLE_GEMINI_KEY: string;
+
+  @IsString()
+  GOOGLE_CLIENT_EMAIL: string;
+
+  @IsString()
+  GOOGLE_PRIVATE_KEY: string;
+
+  @IsString()
+  GOOGLE_PRIVATE_KEY_ID: string;
+
+  @IsString()
+  GOOGLE_CLIENT_ID: string;
 }
 
 export function validateEnvironmentVariables(
