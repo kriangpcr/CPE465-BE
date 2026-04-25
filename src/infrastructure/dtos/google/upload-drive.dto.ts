@@ -5,7 +5,7 @@ export class UploadDriveRequestDto {
     @ApiProperty({ example: '2026-04-23' })
     @IsString()
     @IsNotEmpty()
-    date: string;
+    date: Date;
 
     @ApiProperty({ example: 'JOB12345' })
     @IsString()

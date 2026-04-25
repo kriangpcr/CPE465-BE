@@ -24,7 +24,7 @@ export class UploadDriveController {
     schema: {
       type: 'object',
       properties: {
-        date: { type: 'string' },
+        date: { type: 'string', format: 'date' },
         jobId: { type: 'string' },
         subfolderName: { type: 'string' },
         file: {

@@ -23,7 +23,7 @@ export class GoogleDriveService implements IGoogleDriveRepository {
     this.drive = google.drive({ version: 'v3', auth });
   }
   async uploadFile(
-    date: string,
+    date: Date,
     jobId: string,
     subfolderName: string,
     file: Express.Multer.File,

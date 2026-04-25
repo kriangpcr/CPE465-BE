@@ -11,15 +11,6 @@ export class EnvironmentConfigService implements EnvironmentConfig {
   getGoogleRefreshToken(): string {
     return this.configService.get<string>('GOOGLE_REFRESH_TOKEN');
   }
-  getGoogleClientEmail(): string {
-    return this.configService.get<string>('GOOGLE_CLIENT_EMAIL');
-  }
-  getGooglePrivateKey(): string {
-    return this.configService.get<string>('GOOGLE_PRIVATE_KEY');
-  }
-  getGooglePrivateKeyId(): string {
-    return this.configService.get<string>('GOOGLE_PRIVATE_KEY_ID');
-  }
   getGoogleClientId(): string {
     return this.configService.get<string>('GOOGLE_CLIENT_ID');
   }
