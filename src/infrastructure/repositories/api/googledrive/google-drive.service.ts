@@ -26,7 +26,7 @@ export class GoogleDriveService implements IGoogleDriveRepository {
     date: Date,
     jobId: string,
     subfolderName: string,
-    file: Express.Multer.File,
+    files: Express.Multer.File[],
   ) {
     const rootFolderId = '1L8pgBU2espTYvbugy9Sk-xwXRzy-clth';
 
@@ -45,35 +45,40 @@ export class GoogleDriveService implements IGoogleDriveRepository {
     );
 
     // 3. upload file
-    const response = await this.drive.files.create({
-      requestBody: {
-        name: file.originalname,
-        mimeType: file.mimetype,
-        parents: [subFolderId],
-      },
-      media: {
-        mimeType: file.mimetype,
-        body: require('stream').Readable.from(file.buffer),
-      },
-      fields: 'id',
-      supportsAllDrives: true, // ✅ เพิ่มตัวนี้
-    });
+    const results = await Promise.all(
+      files.map(async (file) => {
+        const response = await this.drive.files.create({
+          requestBody: {
+            name: file.originalname,
+            mimeType: file.mimetype,
+            parents: [subFolderId],
+          },
+          media: {
+            mimeType: file.mimetype,
+            body: require('stream').Readable.from(file.buffer),
+          },
+          fields: 'id',
+          supportsAllDrives: true,
+        });
 
-    const fileId = response.data.id;
+        const fileId = response.data.id;
 
-    // 4. ทำ public
-    await this.drive.permissions.create({
-      fileId,
-      requestBody: {
-        role: 'reader',
-        type: 'anyone',
-      },
-    });
+        await this.drive.permissions.create({
+          fileId,
+          requestBody: {
+            role: 'reader',
+            type: 'anyone',
+          },
+        });
 
-    return {
-      fileId,
-      url: `https://drive.google.com/uc?id=${fileId}`,
-    };
+        return {
+          fileId,
+          url: `https://drive.google.com/uc?id=${fileId}`,
+        };
+      }),
+    );
+
+    return results;
   }
 
   private async findOrCreateFolder(name: string, parentId?: string): Promise<string> {

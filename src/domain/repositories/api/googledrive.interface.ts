@@ -1,3 +1,3 @@
 export interface IGoogleDriveRepository {
-    uploadFile(date: Date, jobId: string, subfolderName: string, file: Express.Multer.File,): Promise<any>;
+    uploadFile(date: Date, jobId: string, subfolderName: string, files: Express.Multer.File[]): Promise<any>;
 }

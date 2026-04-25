@@ -27,21 +27,24 @@ export class UploadDriveController {
         date: { type: 'string', format: 'date' },
         jobId: { type: 'string' },
         subfolderName: { type: 'string' },
-        file: {
-          type: 'string',
-          format: 'binary',
+        files: {
+          type: 'array',
+          items: {
+            type: 'string',
+            format: 'binary',
+          },
         },
       },
     },
   })
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(FilesInterceptor('files'))
   async upload(
     @Body() body: UploadDriveRequestDto,
-    @UploadedFile() file: Express.Multer.File,
+    @UploadedFiles() files: Express.Multer.File[],
   ) {
     return this.uploadDriveUseCase.getUseCase().execute({
       body,
-      file,
+      files,
     });
   }
 }
