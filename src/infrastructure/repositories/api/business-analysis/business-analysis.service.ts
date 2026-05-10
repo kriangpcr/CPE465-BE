@@ -42,8 +42,8 @@ export class BusinessAnalysisService implements IBusinessAnalysisServiceApi {
   async gemini_analysis(data: BusinessIdeaDto): Promise<ApiResponse> {
     const ai_model = [
       'gemini-2.5-flash',
-      'gemini-2.5-flash-lite',
-      'gemini-1.5-flash',
+      'gemini-3.1-flash-lite',
+      'gemini-3-flash',
     ];
     const prompt = GEMINI_PROMPT(data);
 
