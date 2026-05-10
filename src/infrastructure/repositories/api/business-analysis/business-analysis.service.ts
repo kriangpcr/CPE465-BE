@@ -43,7 +43,8 @@ export class BusinessAnalysisService implements IBusinessAnalysisServiceApi {
     const ai_model = [
       'gemini-2.5-flash',
       'gemini-3.1-flash-lite',
-      'gemini-3-flash',
+      'gemini-2.5-flash-lite',
+      'gemini-3-flash-preview',
     ];
     const prompt = GEMINI_PROMPT(data);
 
