@@ -45,6 +45,7 @@ export class BusinessAnalysisService implements IBusinessAnalysisServiceApi {
       'gemini-3.1-flash-lite',
       'gemini-2.5-flash-lite',
       'gemini-3-flash-preview',
+      'gemma-4-31b-it',
     ];
     const prompt = GEMINI_PROMPT(data);
 
